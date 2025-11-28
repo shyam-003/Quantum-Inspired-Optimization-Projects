@@ -1,0 +1,66 @@
+# Quantum approximate optimization algorithm
+# -----------------------------------------------
+#       -> hybrid (quantum + classical)
+#       -> iterative method
+
+# here solve the maxcut problem
+#       -> aim to partition into separate graph such that they are both as large as possible
+#       -> number of edges traversed by this cut is maximized
+
+
+# Part 1 : small scale QAOA
+# ----------------------------
+#   -> use maxcut problem
+#           -> if edge is in cut, then f(x) = 1
+#                                 else f(x) = 0
+#           -> create function
+#                                 if x in one graph, then x = 0, else x = 1
+#                                 f(x) = x_i + x_j - 2 * x_i * x_j
+#                                 max ∑ f(x)    => for all (i, j) in E
+#
+#           -> write in minimization form
+#                                 min ∑ -f(x) = min ∑ 2 * x_i * x_j - x_i - x_j
+
+
+# STEP 1: map classical input to a quantum problem
+# -----------------------------------------------------
+#       A. represent this problem in QUBO
+#       B. rewrite problem as Hamiltonian
+#                  => such that ground state corresponds to solution which minimizes the cost function
+#       C. create quantum circuit which will prepare ground state
+
+
+# Graph -> Optimization problem
+# ------------------------------
+#           min ∑ f(x) = min (x_T * Q * x)
+
+# Optimization problem -> Hamiltonian
+# ------------------------------------
+#          H = ∑ Qij * Z_i * Z_j + ∑ bi * Z_i
+#          H : cost function
+#               its ground state    => solution that minimizes f(x)
+
+# hamiltonian -> Quantum circuit
+# ------------------------------------
+#       QAOA -> apply alternate layer of operators
+#            -> start in ground state of any known system (here H|0>)
+#            -> by applying the operators you will get the ground state
+#            -> exp(-i*gamma_k*H_c) or exp(-i*beta_k*H_m)
+#               where gamma_1,.....p and beta_1,....p
+#               where p = number of layers
+
+
+
+
+# STEP 2 : optimize problem for hardware
+# -----------------------------------------------------
+
+# STEP 3 : execute using qiskit primitives
+# -----------------------------------------------------
+#           A. define initial params
+#           B. Initiate a new session
+#           C. optimal params found
+
+# STEP 4 : post processing
+# -----------------------------------------------------
+#           -> plot bit string distribution
