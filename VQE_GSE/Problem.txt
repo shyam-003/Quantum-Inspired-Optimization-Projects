@@ -1,0 +1,23 @@
+
+Problem
+-----------
+Implement a VQE algorithm to find the ground state energy of simple molecule like H_2 or LiH
+
+
+Workflow
+-----------
+
+1. Define your molecule
+        A. Define your molecule ( here H2 molecule)
+        B. Define geometry ( here define the distance between the molecule)
+        C. Define Hamiltonian ( Use qiskit / pennylane to generate the electronic hamiltonian of a molecule)
+
+2. Map the Problem to Qubits
+        A. Mapping : Apply Jordan-wigner or Bravyi-Kitaev transformation
+        B. Result : convert fermionic hamiltonian to qubit hamiltonian
+
+3. Design a Quantum circuit
+        A. Parameters
+        B. Common choice for circuit : UCCSD
+
+4. Choose classical optimizer
